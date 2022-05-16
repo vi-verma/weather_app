@@ -1,3 +1,4 @@
+import { HistoryCard } from "../components/weatherHistoryCard/HistoryCard";
 
 
 const Home = () => {
@@ -5,7 +6,9 @@ const Home = () => {
     
     return (
         <div>
-         Home   
+         Home 
+         
+         <HistoryCard/>  
         </div>
     );
 };

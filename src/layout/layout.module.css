@@ -6,14 +6,18 @@
     display: flex ;
     justify-items: end;
 }
-.topMenu{
+/* .topMenu{
     background: rgb(241, 180, 180) !important; 
-}
+} */
 /* .menuwrapper:global(.ant-menu-horizontal){
     display: flex !important;
     justify-items: end !important; 
 } */
-:global(.ant-menu-horizontal){
+/* :global(.ant-menu-horizontal){
     display: flex ;
     justify-items: right;
+} */
+
+.sideMenu{
+    height: 96vh;
 }

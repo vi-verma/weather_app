@@ -12,11 +12,9 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          {/* <div className="App"> */}
             <Layout>
               <MyRoutes />
             </Layout>
-          {/* </div> */}
         </BrowserRouter>
       </QueryClientProvider>
     </>

@@ -1,283 +1,255 @@
-
-import React, { useEffect, useState } from 'react';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import styles from './CityDropdown.module.css'
-import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
-import { useQuery } from 'react-query';
-import axios from 'axios';
-
-const city = [ {
+export const CITY_LIST = [ {
     "id": "1",
-    "label": "Mumbai",
+    "value": "Mumbai",
     "state": "Maharashtra"
 },
 {
     "id": "2",
-    "label": "Delhi",
+    "value": "Delhi",
     "state": "Delhi"
 },
 {
     "id": "3",
-    "label": "Bengaluru",
+    "value": "Bengaluru",
     "state": "Karnataka"
 },
 {
     "id": "4",
-    "label": "Ahmedabad",
+    "value": "Ahmedabad",
     "state": "Gujarat"
 },
 {
     "id": "5",
-    "label": "Hyderabad",
+    "value": "Hyderabad",
     "state": "Telangana"
 },
 {
     "id": "6",
-    "label": "Chennai",
+    "value": "Chennai",
     "state": "Tamil Nadu"
 },
 {
     "id": "7",
-    "label": "Kolkata",
+    "value": "Kolkata",
     "state": "West Bengal"
 },
 {
     "id": "8",
-    "label": "Pune",
+    "value": "Pune",
     "state": "Maharashtra"
 },
 {
     "id": "9",
-    "label": "Jaipur",
+    "value": "Jaipur",
     "state": "Rajasthan"
 },
 {
     "id": "10",
-    "label": "Surat",
+    "value": "Surat",
     "state": "Gujarat"
 },
 {
     "id": "11",
-    "label": "Lucknow",
+    "value": "Lucknow",
     "state": "Uttar Pradesh"
 },
 {
     "id": "12",
-    "label": "Kanpur",
+    "value": "Kanpur",
     "state": "Uttar Pradesh"
 },
 {
     "id": "13",
-    "label": "Nagpur",
+    "value": "Nagpur",
     "state": "Maharashtra"
 },
 {
     "id": "14",
-    "label": "Patna",
+    "value": "Patna",
     "state": "Bihar"
 },
 {
     "id": "15",
-    "label": "Indore",
+    "value": "Indore",
     "state": "Madhya Pradesh"
 },
 {
     "id": "16",
-    "label": "Thane",
+    "value": "Thane",
     "state": "Maharashtra"
 },
 {
     "id": "17",
-    "label": "Bhopal",
+    "value": "Bhopal",
     "state": "Madhya Pradesh"
 },
 {
     "id": "18",
-    "label": "Visakhapatnam",
+    "value": "Visakhapatnam",
     "state": "Andhra Pradesh"
 },
 {
     "id": "19",
-    "label": "Vadodara",
+    "value": "Vadodara",
     "state": "Gujarat"
 },
 {
     "id": "20",
-    "label": "Firozabad",
+    "value": "Firozabad",
     "state": "Uttar Pradesh"
 },
 {
     "id": "21",
-    "label": "Ludhiana",
+    "value": "Ludhiana",
     "state": "Punjab"
 },
 {
     "id": "22",
-    "label": "Rajkot",
+    "value": "Rajkot",
     "state": "Gujarat"
 },
 {
     "id": "23",
-    "label": "Agra",
+    "value": "Agra",
     "state": "Uttar Pradesh"
 },
 {
     "id": "24",
-    "label": "Siliguri",
+    "value": "Siliguri",
     "state": "West Bengal"
 },
 {
     "id": "25",
-    "label": "Nashik",
+    "value": "Nashik",
     "state": "Maharashtra"
 },
 {
     "id": "26",
-    "label": "Faridabad",
+    "value": "Faridabad",
     "state": "Haryana"
 },
 {
     "id": "27",
-    "label": "Patiala",
+    "value": "Patiala",
     "state": "Punjab"
 },
 {
     "id": "28",
-    "label": "Meerut",
+    "value": "Meerut",
     "state": "Uttar Pradesh"
 },
 {
     "id": "29",
-    "label": "Kalyan-Dombivali",
+    "value": "Kalyan-Dombivali",
     "state": "Maharashtra"
 },
 {
     "id": "30",
-    "label": "Vasai-Virar",
+    "value": "Vasai-Virar",
     "state": "Maharashtra"
 },
 {
     "id": "31",
-    "label": "Varanasi",
+    "value": "Varanasi",
     "state": "Uttar Pradesh"
 },
 {
     "id": "32",
-    "label": "Srinagar",
+    "value": "Srinagar",
     "state": "Jammu and Kashmir"
 },
 {
     "id": "33",
-    "label": "Dhanbad",
+    "value": "Dhanbad",
     "state": "Jharkhand"
 },
 {
     "id": "34",
-    "label": "Jodhpur",
+    "value": "Jodhpur",
     "state": "Rajasthan"
 },
 {
     "id": "35",
-    "label": "Amritsar",
+    "value": "Amritsar",
     "state": "Punjab"
 },
 {
     "id": "36",
-    "label": "Raipur",
+    "value": "Raipur",
     "state": "Chhattisgarh"
 },
 {
     "id": "37",
-    "label": "Allahabad",
+    "value": "Allahabad",
     "state": "Uttar Pradesh"
 },
 {
     "id": "38",
-    "label": "Coimbatore",
+    "value": "Coimbatore",
     "state": "Tamil Nadu"
 },
 {
     "id": "39",
-    "label": "Jabalpur",
+    "value": "Jabalpur",
     "state": "Madhya Pradesh"
 },
 {
     "id": "40",
-    "label": "Gwalior",
+    "value": "Gwalior",
     "state": "Madhya Pradesh"
 },
 {
     "id": "41",
-    "label": "Vijayawada",
+    "value": "Vijayawada",
     "state": "Andhra Pradesh"
 },
 {
     "id": "42",
-    "label": "Madurai",
+    "value": "Madurai",
     "state": "Tamil Nadu"
 },
 {
     "id": "43",
-    "label": "Guwahati",
+    "value": "Guwahati",
     "state": "Assam"
 },
 {
     "id": "44",
-    "label": "Chandigarh",
+    "value": "Chandigarh",
     "state": "Chandigarh"
 },
 {
     "id": "45",
-    "label": "Hubli-Dharwad",
+    "value": "Hubli-Dharwad",
     "state": "Karnataka"
 },
 {
     "id": "46",
-    "label": "Amroha",
+    "value": "Amroha",
     "state": "Uttar Pradesh"
 },
 {
     "id": "47",
-    "label": "Moradabad",
+    "value": "Moradabad",
     "state": "Uttar Pradesh"
 },
 {
     "id": "48",
-    "label": "Gurgaon",
+    "value": "Gurgaon",
     "state": "Haryana"
 },
 {
     "id": "49",
-    "label": "Aligarh",
+    "value": "Aligarh",
     "state": "Uttar Pradesh"
 },
 {
     "id": "50",
-    "label": "Solapur",
+    "value": "Solapur",
     "state": "Maharashtra"
 },
 {
     "id": "51",
-    "label": "Ranchi",
+    "value": "Ranchi",
     "state": "Jharkhand"
 }];
-
-const CityDropdown = ({setCitySelected}) => {
-
-
-    const onChangefetchByCity = (data) => {
-        setCitySelected(data)
-    };
- 
-    return (
-        <div className={styles.cityList}>
-            <p>Select City</p>
-            <Typeahead
-                onChange={(selected) =>onChangefetchByCity(selected[0]?.label)}
-                options={city}
-            />
-      </div>
-    );
-};
-
-export default CityDropdown;

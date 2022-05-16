@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from './pages/Home';
-import Information from './pages/information';
+import Information from './pages/Information';
 import About from './pages/About';
 import Weather from './pages/Weather';
 

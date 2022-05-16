@@ -1,0 +1,9 @@
+.historyHeader{
+    font-size: large;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(190, 189, 189);
+}
+.temp{
+    font-size: xx-large;
+    font-weight: 700;
+}
